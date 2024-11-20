@@ -27,7 +27,7 @@ public class Person {
     private String affliation;
 
     @Column(nullable = false)
-    private Float price;
+    private Float supporting;
 
     @Column(nullable = false)
     private Float achivement;
@@ -35,5 +35,8 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private List<Record> records;
+
+    @OneToMany(mappedBy = "person")
+    private List<Promise> promises;
 
 }
