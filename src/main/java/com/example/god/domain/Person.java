@@ -9,6 +9,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "person")
 @NoArgsConstructor
 @Getter @Setter
 public class Person {
@@ -30,6 +31,8 @@ public class Person {
 
     @Column(nullable = false)
     private Float achievement;
+
+    private String photo;
 
     @OneToMany(mappedBy = "person")
     private List<Record> records;
