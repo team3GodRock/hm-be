@@ -7,13 +7,11 @@ import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class Record {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "record_id")
     private Long id;
-
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
@@ -21,11 +19,4 @@ public class Record {
 
     @Column(length = 500)
     private String history;
-
-
-
-
-
-
-
 }
