@@ -10,10 +10,10 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class Person {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
     private Long id;
 
     @Column(nullable = false)
@@ -30,7 +30,6 @@ public class Person {
 
     @Column(nullable = false)
     private Float achievement;
-
 
     @OneToMany(mappedBy = "person")
     private List<Record> records;
