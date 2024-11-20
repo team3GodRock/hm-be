@@ -13,8 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -24,13 +23,13 @@ public class Person {
     private String position;
 
     @Column(nullable = false)
-    private String affliation;
+    private String affiliation;
 
     @Column(nullable = false)
     private Float supporting;
 
     @Column(nullable = false)
-    private Float achivement;
+    private Float achievement;
 
 
     @OneToMany(mappedBy = "person")
