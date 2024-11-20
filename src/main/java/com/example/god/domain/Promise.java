@@ -16,7 +16,7 @@ public class Promise {
 
 
     @ManyToOne
-    @JoinColumn(name = "personID", nullable = false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     @Column(length = 500)
@@ -24,8 +24,5 @@ public class Promise {
 
     @Column(nullable = false)
     private boolean isPromise;
-
-
-
 
 }
