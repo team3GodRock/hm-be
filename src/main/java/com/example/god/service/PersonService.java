@@ -6,8 +6,6 @@ import com.example.god.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.format.DateTimeFormatter;
-
 @Service
 public class PersonService {
     private final PersonRepository personRepository;
@@ -29,9 +27,9 @@ public class PersonService {
                 person.getId(),
                 person.getName(),
                 person.getPosition(),
-                person.getAffliation(),
+                person.getAffiliation(),
                 person.getSupporting(),
-                person.getAchivement()
+                person.getAchievement()
 
         );
     }

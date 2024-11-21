@@ -6,26 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "promise")
 @NoArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 public class Promise {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "promise_id")
     private Long id;
 
-
     @ManyToOne
-    @JoinColumn(name = "personID", nullable = false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     @Column(length = 500)
     private String promiseDetail;
 
     @Column(nullable = false)
-    private boolean isPromise;
-
-
-
+    private boolean hasPromise;
 
 }
