@@ -2,17 +2,17 @@ package com.example.god.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-
-@Getter
+@Getter @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class PersonInfoResponseDto {
     private Long id;
     private String name;
     private String position;
-    private String affliation;
+    private String affiliation;
     private float supporting;
-    private float achivement;
-
+    private float achievement;
 }
