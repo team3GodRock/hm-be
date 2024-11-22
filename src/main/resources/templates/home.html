@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron"> <h1>정치인</h1>
+        <p class="lead">인물 기능</p> <p>
+            <a class="btn btn-lg btn-secondary" href="/members/new">인물 추가</a>
+            <a class="btn btn-lg btn-secondary" href="/members">인물 목록</a> </p>
+        <p class="lead">공략 수정</p> <p>
+            <a class="btn btn-lg btn-dark" href="/items/new">공략 추가</a>
+            <a class="btn btn-lg btn-dark" href="/items">공략 달성</a> </p>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
