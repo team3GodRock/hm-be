@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+                <th>징책</th>
+                <th>소속</th>
+                <th>지지율</th>
+                <th>공략 달성도</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person:${people}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.position}"></td>
+                <td th:text="${person.affiliation}"></td>
+                <td th:text="${person.supporting}"></td>
+                <td th:text="${person.achievement}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+
+</div> <!-- /container -->
+
+</body>
+</html>
