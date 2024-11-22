@@ -2,6 +2,7 @@ package com.example.god.service;
 
 import com.example.god.domain.Person;
 import com.example.god.dto.response.PersonInfoResponseDto;
+import com.example.god.dto.response.PersonSimpleDto;
 import com.example.god.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,19 @@ public class PersonService {
                 person.getAffiliation(),
                 person.getSupporting(),
                 person.getAchievement()
+        );
+    }
+
+    public List<PersonSimpleDto> getAllPerson(){
+        List<Person> persons =personRepository.findAll();
+        return persons.stream().map(person -> convertPersontoSimpeDto(person)).toList();
+    }
+
+    public PersonSimpleDto convertPersontoSimpeDto(Person person){
+        return new PersonSimpleDto(
+                person.getId(),
+                person.getName(),
+                person.getPosition()
         );
     }
 }
