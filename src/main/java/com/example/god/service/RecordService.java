@@ -6,22 +6,17 @@ import com.example.god.dto.response.PersonInfoResponseDto;
 import com.example.god.dto.response.RecordDto;
 import com.example.god.repository.PersonRepository;
 import com.example.god.repository.RecordRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RecordService {
     private final RecordRepository recordRepository;
     private final PersonRepository personRepository;
-
-    @Autowired
-    public RecordService(RecordRepository recordRepository,PersonRepository personRepository) {
-        this.recordRepository =recordRepository;
-        this.personRepository=personRepository;
-
-    }
 
     public List<RecordDto> getRecordInfo(String position){
         Person person= personRepository.findByPosition(position);
