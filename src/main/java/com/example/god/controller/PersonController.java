@@ -27,4 +27,6 @@ public class PersonController {
         return ResponseEntity.ok(personInfoResponseDto);
     }
 
+
+
 }
