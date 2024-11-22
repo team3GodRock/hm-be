@@ -16,6 +16,7 @@ import java.util.List;
 public class PersonService {
     private final PersonRepository personRepository;
 
+    ////////////////////////////////////admin///////////////////////////////////////////////////////////////////////
     @Transactional
     public Long join(Person person) {
         personRepository.save(person); // 새로 저장
@@ -25,6 +26,10 @@ public class PersonService {
     public List<Person> findPeople(){
         return personRepository.findAll();
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     public PersonInfoResponseDto  getPersonInfo(String position){
         Person person = personRepository.findByPosition(position);

@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class PromiseDto {
     private Long id;
-    private Long promiseDetail;
+    private String promiseDetail;
     private Boolean hasPromise;
 }
