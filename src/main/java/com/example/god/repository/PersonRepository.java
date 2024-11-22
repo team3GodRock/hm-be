@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-    Person findByPosition(String position);
 
     Person findByName(String name);
 }

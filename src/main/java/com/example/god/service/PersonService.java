@@ -4,6 +4,7 @@ import com.example.god.domain.Person;
 import com.example.god.dto.response.PersonInfoResponseDto;
 import com.example.god.dto.response.PersonSimpleDto;
 import com.example.god.repository.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +32,9 @@ public class PersonService {
 
 
 
-    public PersonInfoResponseDto  getPersonInfo(String position){
-        Person person = personRepository.findByPosition(position);
+    public PersonInfoResponseDto  getPersonInfo(Long person_id){
+        Person person = personRepository.findById(person_id)
+                .orElseThrow(() -> new EntityNotFoundException("Person not found with id: " +person_id));
         return convertPersonToInfoDto(person);
     }
 

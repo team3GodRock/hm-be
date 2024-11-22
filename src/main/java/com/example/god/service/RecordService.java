@@ -18,9 +18,9 @@ public class RecordService {
     private final RecordRepository recordRepository;
     private final PersonRepository personRepository;
 
-    public List<RecordDto> getRecordInfo(String position){
-        Person person= personRepository.findByPosition(position);
-        List<Record> records = recordRepository.findByPersonId(person.getId());
+    public List<RecordDto> getRecordInfo(Long person_id){
+
+        List<Record> records = recordRepository.findByPersonId(person_id);
         return records.stream().map(record -> convertRecordtoDto(record)).toList();
 
     }

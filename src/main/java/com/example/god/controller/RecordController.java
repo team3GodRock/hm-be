@@ -26,9 +26,9 @@ public class RecordController {
     }
 
 
-    @GetMapping("/record/{position}")
-    public ResponseEntity<List<RecordDto>> getPeronInfo(@PathVariable String position) {
-        List<RecordDto> recordDtos = recordService.getRecordInfo(position);
+    @GetMapping("/record/{person_id}")
+    public ResponseEntity<List<RecordDto>> getPeronInfo(@PathVariable Long person_id) {
+        List<RecordDto> recordDtos = recordService.getRecordInfo(person_id);
 
         return ResponseEntity.ok(recordDtos);
     }

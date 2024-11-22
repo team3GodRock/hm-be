@@ -23,9 +23,9 @@ public class PersonController {
     }
 
 
-    @GetMapping("/person/{position}")
-    public ResponseEntity<PersonInfoResponseDto> getPeronInfo(@PathVariable String position) {
-        PersonInfoResponseDto personInfoResponseDto = personService.getPersonInfo(position);
+    @GetMapping("/person/{person_id}")
+    public ResponseEntity<PersonInfoResponseDto> getPeronInfo(@PathVariable Long person_id) {
+        PersonInfoResponseDto personInfoResponseDto = personService.getPersonInfo(person_id);
 
         return ResponseEntity.ok(personInfoResponseDto);
     }
