@@ -27,8 +27,6 @@ public class AdminPromiseController {
         return "promise/createPromiseForm"; // 폼의 HTML 파일 이름
     }
 
-
-
     @PostMapping("/admin/promise/new")
     public String createPromise(@ModelAttribute PromiseForm promiseForm) {
         Person person = personService.findOne(promiseForm.getPersonId());
@@ -44,6 +42,7 @@ public class AdminPromiseController {
 
         // 저장
         promiseService.promiseJoin(promise);
+        personService.updateAchievement(person);
         return "redirect:/admin";
     }
 
