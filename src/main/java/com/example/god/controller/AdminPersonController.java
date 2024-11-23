@@ -31,6 +31,8 @@ public class AdminPersonController {
         person.setAchievement(0.0f);
         person.setPosition(personInfoResponseDto.getPosition());
         person.setSupporting(personInfoResponseDto.getSupporting());
+        person.setLike(0);
+        person.setDislike(0);
         person.setPhoto(null);
         personService.join(person);
 
