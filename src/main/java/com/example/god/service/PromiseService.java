@@ -21,7 +21,7 @@ import java.util.List;
 public class PromiseService {
     private final PromiseRepository promiseRepository;
 
-    public List<PromiseDto> getPromises(Long person_id){
+    public List<PromiseDto> getPromises(Long person_id) {
         List<Promise> promises = promiseRepository.findByPersonId(person_id);
         return promises.stream().map(promise -> convertpromisetoDto(promise)).toList();
     }
@@ -30,7 +30,7 @@ public class PromiseService {
         return promiseRepository.findByPersonId(personId);
     }
 
-    public PromiseDto convertpromisetoDto(Promise promise){
+    public PromiseDto convertpromisetoDto(Promise promise) {
         return new PromiseDto(
                 promise.getId(),
                 promise.getPromiseDetail(),
@@ -38,12 +38,12 @@ public class PromiseService {
         );
     }
 
-    public Long promiseJoin(Promise promise){
+    public Long promiseJoin(Promise promise) {
         promiseRepository.save(promise);
         return promise.getId();
     }
 
-    public List<Promise> findPromises(){
+    public List<Promise> findPromises() {
         return promiseRepository.findAll();
     }
 
@@ -53,5 +53,11 @@ public class PromiseService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 공약이 존재하지 않습니다. ID: " + id));
         promise.setHasPromise(hasPromise);
         promiseRepository.save(promise);
+    }
+
+    public Person findPersonByPromiseId(Long promiseId) {
+        Promise promise = promiseRepository.findById(promiseId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Promise ID: " + promiseId));
+        return promise.getPerson();
     }
 }
