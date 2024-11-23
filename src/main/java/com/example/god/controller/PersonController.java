@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class PersonController {
         return ResponseEntity.ok(persons);
     }
 
-    @GetMapping("/person/like/{person_id}")
+    @PostMapping("/person/like/{person_id}")
     public ResponseEntity<String> likePerson(@PathVariable Long person_id) {
         // 특정 person_id의 좋아요 수 증가
         boolean success = personService.incrementLikes(person_id);
@@ -48,7 +49,7 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/person/dislike/{person_id}")
+    @PostMapping("/person/dislike/{person_id}")
     public ResponseEntity<String> dislikePerson(@PathVariable Long person_id) {
         // 특정 person_id의 좋아요 수 증가
         boolean success = personService.incrementDislikes(person_id);
