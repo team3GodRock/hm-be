@@ -12,6 +12,7 @@ import com.example.god.repository.PromiseRepository;
 import com.example.god.repository.RecordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,10 +22,12 @@ public class PromiseService {
     private final PromiseRepository promiseRepository;
 
     public List<PromiseDto> getPromises(Long person_id){
-
         List<Promise> promises = promiseRepository.findByPersonId(person_id);
         return promises.stream().map(promise -> convertpromisetoDto(promise)).toList();
+    }
 
+    public List<Promise> findPromisesByPersonId(Long personId) {
+        return promiseRepository.findByPersonId(personId);
     }
 
     public PromiseDto convertpromisetoDto(Promise promise){
@@ -38,5 +41,17 @@ public class PromiseService {
     public Long promiseJoin(Promise promise){
         promiseRepository.save(promise);
         return promise.getId();
+    }
+
+    public List<Promise> findPromises(){
+        return promiseRepository.findAll();
+    }
+
+    @Transactional
+    public void updatePromiseStatus(Long id, boolean hasPromise) {
+        Promise promise = promiseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 공약이 존재하지 않습니다. ID: " + id));
+        promise.setHasPromise(hasPromise);
+        promiseRepository.save(promise);
     }
 }
