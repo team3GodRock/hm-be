@@ -20,7 +20,7 @@ public class Person {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String position;
 
     @Column(nullable = false)
