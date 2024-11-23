@@ -2,14 +2,13 @@ package com.example.god.controller;
 
 import com.example.god.domain.Person;
 import com.example.god.domain.Promise;
+import com.example.god.dto.response.PromiseDto;
 import com.example.god.service.PersonService;
 import com.example.god.service.PromiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,4 +45,35 @@ public class AdminPromiseController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/admin/promise/select/person")
+    public String createEdit(Model model) {
+        List<Person> people = personService.findPeople(); // 모든 인물 목록 조회
+        model.addAttribute("people", people);
+        return "promise/promiseEditSelectPerson";
+    }
+
+    @GetMapping("/admin/promise/edit/{id}")
+    public String showPromiseEdit(@PathVariable Long id, Model model) {
+        List<Promise> promises = promiseService.findPromisesByPersonId(id); // 선택된 인물의 공약 조회
+        Person person = personService.findOne(id);
+
+        model.addAttribute("person", person); // 선택된 인물 정보 전달
+        model.addAttribute("promises", promises); // 공약 목록 전달
+        return "promise/promiseEdit"; // 공약 수정 페이지
+    }
+
+    @PostMapping("/admin/promise/update/{id}")
+    public String updatePromises() {
+//        // 인물 정보 확인
+//        Person person = personService.findOne(id);
+//
+//        // 공약 상태 업데이트
+//        for (PromiseDto promiseDto : form.getPromises()) {
+//            promiseService.updatePromiseStatus(promiseDto.getId(), promiseDto.getHasPromise());
+//        }
+//
+//        // 인물 성취도 업데이트
+//        personService.updateAchievement(person);
+        return "redirect:/admin"; // 수정 후 페이지 리다이렉트
+    }
 }
