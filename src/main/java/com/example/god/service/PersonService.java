@@ -45,7 +45,8 @@ public class PersonService {
                 person.getPosition(),
                 person.getAffiliation(),
                 person.getSupporting(),
-                person.getAchievement()
+                person.getAchievement(),
+                person.getPhoto()
         );
     }
 
