@@ -38,26 +38,14 @@ public class PersonController {
     }
 
     @PostMapping("/person/like/{person_id}")
-    public ResponseEntity<String> likePerson(@PathVariable Long person_id) {
-        // 특정 person_id의 좋아요 수 증가
-        boolean success = personService.incrementLikes(person_id);
-
-        if (success) {
-            return ResponseEntity.ok("좋아요가 성공적으로 추가되었습니다.");
-        } else {
-            return ResponseEntity.status(404).body("해당 인물을 찾을 수 없습니다.");
-        }
+    public ResponseEntity<Integer> likePerson(@PathVariable Long person_id) {
+        int count = personService.incrementLikes(person_id);
+        return ResponseEntity.ok(count);
     }
 
     @PostMapping("/person/dislike/{person_id}")
-    public ResponseEntity<String> dislikePerson(@PathVariable Long person_id) {
-        // 특정 person_id의 좋아요 수 증가
-        boolean success = personService.incrementDislikes(person_id);
-
-        if (success) {
-            return ResponseEntity.ok("싫어요가 성공적으로 추가되었습니다.");
-        } else {
-            return ResponseEntity.status(404).body("해당 인물을 찾을 수 없습니다.");
-        }
+    public ResponseEntity<Integer> dislikePerson(@PathVariable Long person_id) {
+        int count = personService.incrementDislikes(person_id);
+        return ResponseEntity.ok(count);
     }
 }

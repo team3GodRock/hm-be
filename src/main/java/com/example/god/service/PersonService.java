@@ -80,27 +80,19 @@ public class PersonService {
     }
 
     @Transactional
-    public boolean incrementLikes(Long personId) {
+    public int incrementLikes(Long personId) {
         // 데이터베이스에서 해당 ID의 인물을 조회
         Person person = personRepository.findById(personId).orElse(null);
-
-        if (person != null) {
-            person.setLike(person.getLike() + 1); // 좋아요 수 증가
-            personRepository.save(person); // 업데이트된 데이터 저장
-            return true;
-        }
-        return false; // 인물 정보가 없으면 false 반환
+        person.setLike(person.getLike() + 1); // 좋아요 수 증가
+        personRepository.save(person); // 업데이트된 데이터 저장
+        return person.getLike();
     }
 
     @Transactional
-    public boolean incrementDislikes(Long personId) {
+    public int incrementDislikes(Long personId) {
         Person person = personRepository.findById(personId).orElse(null);
-
-        if (person != null) {
-            person.setDislike(person.getDislike() + 1);
-            personRepository.save(person);
-            return true;
-        }
-        return false;
+        person.setDislike(person.getDislike() + 1);
+        personRepository.save(person);
+        return person.getDislike();
     }
 }
