@@ -17,7 +17,6 @@ import java.util.List;
 public class PersonService {
     private final PersonRepository personRepository;
 
-    ////////////////////////////////////admin///////////////////////////////////////////////////////////////////////
     @Transactional
     public Long join(Person person) {
         personRepository.save(person); // 새로 저장
@@ -28,8 +27,10 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    public Person findOne(Long personId) {
+        return personRepository.findById(personId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 Person을 찾을 수 없습니다. ID: " + personId));
+    }
 
 
     public PersonInfoResponseDto  getPersonInfo(Long person_id){
