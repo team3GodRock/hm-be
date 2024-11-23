@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <h2 th:text="'공약 수정 - ' + ${person.name}"></h2>
+
+    <div class="mt-4" th:if="${promises.size() > 0}">
+        <h4>공약 목록</h4>
+        <form th:action="@{/admin/promise/update/{id}(id=${person.id})}" method="post">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>공약 내용</th>
+                    <th>달성 여부</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="promise, iterStat : ${promises}">
+                    <td th:text="${promise.promiseDetail}">공약 내용</td>
+                    <td>
+                        <!-- 공약 ID -->
+                        <input type="hidden" name="promises[${iterStat.index}].id" th:value="${promise.id}" />
+                        <!-- 공약 상태 -->
+                        <input type="checkbox" name="promises[${iterStat.index}].hasPromise"
+                               class="form-check-input" th:checked="${promise.hasPromise}" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary mt-3">저장</button>
+        </form>
+
+
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+</div>
+
+</body>
+</html>

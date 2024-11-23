@@ -2,8 +2,9 @@ package com.example.god.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 @AllArgsConstructor
 public class PromiseDto {
     private Long id;
