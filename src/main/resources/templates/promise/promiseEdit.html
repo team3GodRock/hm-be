@@ -22,14 +22,18 @@
                 <tr th:each="promise, iterStat : ${promises}">
                     <td th:text="${promise.promiseDetail}">공약 내용</td>
                     <td>
-                        <!-- 공약 ID -->
-                        <input type="hidden" name="promises[${iterStat.index}].id" th:value="${promise.id}" />
-                        <!-- 공약 상태 -->
-                        <input type="checkbox" name="promises[${iterStat.index}].hasPromise"
-                               class="form-check-input" th:checked="${promise.hasPromise}" />
+                        <form th:action="@{/admin/promise/update/{id}(id=${promise.id})}" method="post">
+                            <input type="hidden" name="id" th:value="${promise.id}" />
+                            <input type="checkbox"
+                                   name="hasPromise"
+                                   th:checked="${promise.hasPromise}"
+                                   class="form-check-input"
+                                   onchange="this.form.submit();" />
+                        </form>
                     </td>
                 </tr>
                 </tbody>
+
             </table>
             <button type="submit" class="btn btn-primary mt-3">저장</button>
         </form>

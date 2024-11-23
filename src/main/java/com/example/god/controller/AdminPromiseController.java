@@ -63,17 +63,18 @@ public class AdminPromiseController {
     }
 
     @PostMapping("/admin/promise/update/{id}")
-    public String updatePromises() {
-//        // 인물 정보 확인
-//        Person person = personService.findOne(id);
-//
-//        // 공약 상태 업데이트
-//        for (PromiseDto promiseDto : form.getPromises()) {
-//            promiseService.updatePromiseStatus(promiseDto.getId(), promiseDto.getHasPromise());
-//        }
-//
-//        // 인물 성취도 업데이트
-//        personService.updateAchievement(person);
-        return "redirect:/admin"; // 수정 후 페이지 리다이렉트
+    public String updatePromises(
+            @PathVariable Long id,
+            @RequestParam("hasPromise") Boolean hasPromise) {
+        // 공약 상태 업데이트
+        promiseService.updatePromiseStatus(id, hasPromise);
+
+        // 연관된 인물의 성취도 업데이트
+        Person person = promiseService.findPersonByPromiseId(id);
+        if (person != null) {
+            personService.updateAchievement(person);
+        }
+
+        return "redirect:/admin"; // 수정 후 관리자 페이지로 리다이렉트
     }
 }
