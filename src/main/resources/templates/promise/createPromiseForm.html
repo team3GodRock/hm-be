@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <form role="form" th:action="@{/admin/promise/new}" th:object="${promiseForm}" method="post">
+        <div class="form-group">
+            <label for="person">인물</label>
+            <select th:field="*{personId}" id="person" class="form-control" required>
+                <option value="">인물 선택</option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.name}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="promiseDetail">공약</label>
+            <input type="text" th:field="*{promiseDetail}" id="promiseDetail" class="form-control" placeholder="공약을 입력하세요" required>
+        </div>
+        <div class="form-group">
+            <label for="hasPromise">이행 여부</label>
+            <input type="checkbox" th:field="*{hasPromise}" id="hasPromise" class="form-check-input mt-1">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+
+</div> <!-- /container -->
+
+</body>
+</html>

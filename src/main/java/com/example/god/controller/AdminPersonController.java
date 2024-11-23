@@ -17,13 +17,13 @@ import java.util.List;
 public class AdminPersonController {
     private final PersonService personService;
 
-    @GetMapping("/person/new")
+    @GetMapping("/admin/person/new")
     public String createForm(Model model){
         model.addAttribute("personDTO",new PersonInfoResponseDto());
         return "person/createPersonDTO";
     }
 
-    @PostMapping("/person/new")
+    @PostMapping("/admin/person/new")
     public String create(@ModelAttribute PersonInfoResponseDto personInfoResponseDto){
         Person person = new Person();
         person.setName(personInfoResponseDto.getName());
@@ -37,7 +37,7 @@ public class AdminPersonController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/people")
+    @GetMapping("/admin/people")
     public String list(Model model){
         List<Person> people = personService.findPeople();
         model.addAttribute("people",people);
