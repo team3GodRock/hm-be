@@ -34,6 +34,11 @@ public class Person {
 
     private String photo;
 
+    @Column(nullable = false)
+    private int like;
+    @Column(nullable = false)
+    private int dislike;
+
     @OneToMany(mappedBy = "person")
     private List<Record> records;
 
