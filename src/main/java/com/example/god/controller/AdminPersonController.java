@@ -28,7 +28,7 @@ public class AdminPersonController {
         Person person = new Person();
         person.setName(personInfoResponseDto.getName());
         person.setAffiliation(personInfoResponseDto.getAffiliation());
-        person.setAchievement(personInfoResponseDto.getAchievement());
+        person.setAchievement(0.0f);
         person.setPosition(personInfoResponseDto.getPosition());
         person.setSupporting(personInfoResponseDto.getSupporting());
         person.setPhoto(null);

@@ -15,4 +15,5 @@ public class PersonInfoResponseDto {
     private String affiliation;
     private float supporting;
     private float achievement;
+    private String photo;
 }
