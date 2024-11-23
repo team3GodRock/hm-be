@@ -1,6 +1,7 @@
 package com.example.god.service;
 
 import com.example.god.domain.Person;
+import com.example.god.domain.Promise;
 import com.example.god.domain.Record;
 import com.example.god.dto.response.PersonInfoResponseDto;
 import com.example.god.dto.response.RecordDto;
@@ -31,6 +32,11 @@ public class RecordService {
                record.getPerson().getId(),
                record.getHistory()
        );
+    }
+
+    public Long recordJoin(Record record ){
+        recordRepository.save(record);
+        return record.getId();
     }
 
 }
