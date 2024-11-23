@@ -20,8 +20,6 @@ import java.util.List;
 public class PromiseService {
     private final PromiseRepository promiseRepository;
 
-
-
     public List<PromiseDto> getPromises(Long person_id){
 
         List<Promise> promises = promiseRepository.findByPersonId(person_id);
@@ -35,5 +33,10 @@ public class PromiseService {
                 promise.getPromiseDetail(),
                 promise.isHasPromise()
         );
+    }
+
+    public Long promiseJoin(Promise promise){
+        promiseRepository.save(promise);
+        return promise.getId();
     }
 }
